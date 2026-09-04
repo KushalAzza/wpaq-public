@@ -1,0 +1,60 @@
+name: WPAQ Scan
+description: Start a WPAQ website scan and fail the job if it fails or scores below a threshold
+author: WPAQ
+
+inputs:
+  api-key:
+    description: WPAQ API key (wpaq_…)
+    required: true
+  url:
+    description: Absolute http(s) URL to scan
+    required: true
+  api-base:
+    description: API origin without trailing slash
+    required: false
+    default: https://wpaq.com
+  min-score:
+    description: Fail when overall_score is below this integer (leave empty to skip score gate)
+    required: false
+    default: ""
+  fail-on:
+    description: Gate mode — score, failed_status, or both
+    required: false
+    default: both
+  timeout-minutes:
+    description: Max minutes to wait for a terminal scan status
+    required: false
+    default: "20"
+  poll-interval-seconds:
+    description: Seconds between status polls
+    required: false
+    default: "15"
+
+outputs:
+  scan-id:
+    description: Created scan id
+    value: ${{ steps.run.outputs.scan-id }}
+  status:
+    description: Final scan status
+    value: ${{ steps.run.outputs.status }}
+  overall-score:
+    description: Final overall score (empty if null)
+    value: ${{ steps.run.outputs.overall-score }}
+  report-url:
+    description: Human-readable report URL
+    value: ${{ steps.run.outputs.report-url }}
+
+runs:
+  using: composite
+  steps:
+    - id: run
+      shell: bash
+      env:
+        WPAQ_API_KEY: ${{ inputs.api-key }}
+        WPAQ_URL: ${{ inputs.url }}
+        WPAQ_API_BASE: ${{ inputs.api-base }}
+        WPAQ_MIN_SCORE: ${{ inputs.min-score }}
+        WPAQ_FAIL_ON: ${{ inputs.fail-on }}
+        WPAQ_TIMEOUT_MINUTES: ${{ inputs.timeout-minutes }}
+        WPAQ_POLL_INTERVAL_SECONDS: ${{ inputs.poll-interval-seconds }}
+      run: bash "${{ github.action_path }}/scan.sh"

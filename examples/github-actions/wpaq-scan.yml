@@ -1,0 +1,33 @@
+# Example: gate a deploy or PR on a WPAQ scan
+#
+# 1. Create an API key at https://wpaq.com/dashboard/integrations (Pro / Agency)
+# 2. Add repository secret WPAQ_API_KEY
+# 3. Copy this file to .github/workflows/wpaq-scan.yml and set `url`
+
+name: WPAQ scan
+
+on:
+  workflow_dispatch:
+  # Uncomment to run on pull requests (uses plan scan quota):
+  # pull_request:
+
+jobs:
+  website-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scan site with WPAQ
+        id: wpaq
+        uses: KushalAzza/wpaq-public/actions/scan@v1
+        with:
+          api-key: ${{ secrets.WPAQ_API_KEY }}
+          url: https://example.com
+          min-score: "70"
+          fail-on: both
+          timeout-minutes: "25"
+
+      - name: Report link
+        if: always()
+        run: |
+          echo "status=${{ steps.wpaq.outputs.status }}"
+          echo "score=${{ steps.wpaq.outputs.overall-score }}"
+          echo "report=${{ steps.wpaq.outputs.report-url }}"
