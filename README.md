@@ -25,12 +25,6 @@ Product, API, and dashboard docs stay on [wpaq.com](https://wpaq.com) / the priv
 
 Prefer a **version tag** (`@v1`) in production workflows. `@main` tracks the latest commit on this repo.
 
-## Repo description (GitHub UI)
-
-Suggested GitHub repository description:
-
-> Public WPAQ GitHub Actions and examples (CI scan gate). Product source stays private.
-
 ## License
 
 Examples and the Action are provided for use with the WPAQ service. See [wpaq.com/terms](https://wpaq.com/terms).
