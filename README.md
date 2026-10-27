@@ -11,7 +11,7 @@ Product, API, and dashboard docs stay on [wpaq.com](https://wpaq.com) / the priv
 
 ## Quick start (GitHub Action)
 
-1. Create an API key at [Dashboard → Integrations](https://wpaq.com/dashboard/integrations) (Pro or Agency).
+1. Create an API key at [Dashboard → Integrations](https://wpaq.com/dashboard/integrations) (Pro or Business).
 2. Add repository secret `WPAQ_API_KEY`.
 3. Add a workflow step:
 
