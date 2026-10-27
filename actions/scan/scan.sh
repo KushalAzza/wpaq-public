@@ -106,7 +106,7 @@ HTTP_CODE="$(
 }
 
 if [[ "$HTTP_CODE" == "401" || "$HTTP_CODE" == "403" ]]; then
-  echo "error: authentication/plan rejected (HTTP ${HTTP_CODE}). Check the API key and that the account is Pro or Agency." >&2
+  echo "error: authentication/plan rejected (HTTP ${HTTP_CODE}). Check the API key and that the account is Pro or Business." >&2
   cat "$CREATE_TMP" >&2 || true
   rm -f "$CREATE_TMP"
   exit 1

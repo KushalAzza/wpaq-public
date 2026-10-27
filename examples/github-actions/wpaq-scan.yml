@@ -1,6 +1,6 @@
 # Example: gate a deploy or PR on a WPAQ scan
 #
-# 1. Create an API key at https://wpaq.com/dashboard/integrations (Pro / Agency)
+# 1. Create an API key at https://wpaq.com/dashboard/integrations (Pro / Business)
 # 2. Add repository secret WPAQ_API_KEY
 # 3. Copy this file to .github/workflows/wpaq-scan.yml and set `url`
 

@@ -2,7 +2,7 @@
 
 Composite Action that starts a [WPAQ](https://wpaq.com) scan with your API key, polls until the scan finishes, and fails the job when the scan fails or the overall score is below an optional floor.
 
-Requires **Pro** or **Agency** (API keys). Uses `curl` and `jq` (available on GitHub-hosted `ubuntu-latest` runners).
+Requires **Pro** or **Business** (API keys). Uses `curl` and `jq` (available on GitHub-hosted `ubuntu-latest` runners).
 
 ## Usage
 
